@@ -1,16 +1,19 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.5'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'bangbang'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-description = 'toy project for lowest_ accommodation'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
 	}
 }
 
@@ -19,9 +22,29 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	// Spring Boot Starters
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+	// Selenium (For Crawling)
+	implementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
+
+	// Kafka
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	// Database
+	runtimeOnly 'com.h2database:h2' // 개발용 DB
+	runtimeOnly 'com.mysql:mysql-connector-j' // 운영용 DB
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
 
 tasks.named('test') {
