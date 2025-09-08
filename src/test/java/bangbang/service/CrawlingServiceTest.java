@@ -3,7 +3,7 @@ package bangbang.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import bangbang.LowestAccommodationApplication;
 
 @SpringBootTest(classes = LowestAccommodationApplication.class)
@@ -13,10 +13,21 @@ class CrawlingServiceTest {
     CrawlingService crawlingService;
 
     @Test
-    void googleTitleTest() {
-        String title = crawlingService.getGoogleTitle();
-        System.out.println("Google 페이지 타이틀: " + title);
-        assertThat(title).contains("Google");
+    void extractFinalPriceTest() {
+        // test URL
+        String[] testUrls = {"https://www.yeogi.com/domestic-accommodations/66268?checkIn=2025-09-30&checkOut=2025-10-01",
+                "https://www.yeogi.com/domestic-accommodations/64806?checkIn=2025-09-30&checkOut=2025-10-01",
+                "https://www.yeogi.com/domestic-accommodations/76992?checkIn=2025-09-30&checkOut=2025-10-01"};
+
+        for (int i = 0; i < testUrls.length; i++) {
+            String url = testUrls[i];
+            Long result = crawlingService.extractFinalPrice(url);
+
+            if (result == -1L) {
+                System.out.println("❌ 가격 추출 실패 # url : " + url);
+            } else {
+                System.out.println("✅ 추출된 가격: " + result + "원" + " # url : " + url);
+            }
+        }
     }
 }
-
