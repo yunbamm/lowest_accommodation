@@ -20,7 +20,7 @@ public class CrawlingService {
     private final WebDriverFactory webDriverFactory;
 
     /**
-     *
+     * only do Crawling
      * @param targetUrl (e.g. https://www.yeogi.com/domestic-accommodations/66268?checkIn=2025-09-30&checkOut=2025-10-01)
      * @return final price (e.g. 76960) or -1L (in case of error)
      */
