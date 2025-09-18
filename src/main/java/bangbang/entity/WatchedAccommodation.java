@@ -1,22 +1,15 @@
 package bangbang.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "accommodation_price_history")
-@Getter
+@Table(name = "accommodation_watched_list")
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class PriceHistory {
-
+public class WatchedAccommodation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,10 +24,15 @@ public class PriceHistory {
     private LocalDate checkOut;
 
     @Column(nullable = false)
-    private Long price;
-
-    @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+    
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean isActive = true;
 
     // Before saving DB, automatically set createdAt
     @PrePersist
