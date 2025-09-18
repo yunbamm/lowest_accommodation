@@ -25,7 +25,7 @@ public class CrawlingController {
 
         String targetUrl = buildTargetUrl(request);
 
-        // 크롤링 실행
+        // start crawling to get price
         Long price = crawlingService.extractFinalPrice(targetUrl);
 
         PriceResponse response = PriceResponse.builder()

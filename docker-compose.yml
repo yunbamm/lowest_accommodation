@@ -1,0 +1,31 @@
+# Docker Compose 파일 - 여러 컨테이너를 한번에 관리
+version: '3.8'
+
+services:
+  # MySQL 데이터베이스 컨테이너
+  mysql:
+    # Docker Hub에서 MySQL 8.0 이미지 사용
+    image: mysql:8.0
+    
+    # 컨테이너 이름 지정 (안 써도 되지만 관리하기 편함)
+    container_name: lowest_accommodation_db
+    
+    # 환경변수 설정 (MySQL 초기 설정)
+    environment:
+      MYSQL_ROOT_PASSWORD: root123        # root 계정 비밀번호
+      MYSQL_DATABASE: lowest_accommodation # 초기에 생성할 DB 이름
+      MYSQL_USER: bangbang                 # 일반 사용자 계정
+      MYSQL_PASSWORD: bangbang123          # 일반 사용자 비밀번호
+    
+    # 포트 포워딩: 내컴퓨터:3306 -> 컨테이너:3306
+    ports:
+      - "3306:3306"
+    
+    # 데이터 영구 저장을 위한 볼륨 마운트
+    # 컨테이너가 삭제되어도 DB 데이터는 유지됨
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+# 볼륨 정의 (데이터 저장 공간)
+volumes:
+  mysql_data:
