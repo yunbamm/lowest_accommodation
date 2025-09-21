@@ -29,7 +29,7 @@ public class CrawlingRequest {
     @AssertTrue(message = "체크아웃 날짜는 체크인 날짜보다 이후여야 합니다")
     public boolean isCheckOutAfterCheckIn() {
         if (checkIn == null || checkOut == null) {
-            return true; // null 검증은 @NotNull에서 처리
+            return false;
         }
         return checkOut.isAfter(checkIn);
     }
