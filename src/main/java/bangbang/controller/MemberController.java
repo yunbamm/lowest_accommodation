@@ -1,10 +1,11 @@
 package bangbang.controller;
 
+import bangbang.dto.MemberRegisterRequest;
 import bangbang.entity.Member;
 import bangbang.service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,18 +22,13 @@ public class MemberController {
 
     //TODO : RequestBody is okay for single field?
     @PostMapping("/register")
-    public ResponseEntity<Member> registerMember(@RequestBody String name) {
-        //TODO : How can I add validation check for each field?
-        if (name == null || StringUtils.isEmpty(name)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
-        boolean existing = memberService.findByName(name) != null;
+    public ResponseEntity<Member> registerMember(@Valid @RequestBody MemberRegisterRequest request) {
+        boolean existing = memberService.findByName(request.getName()) != null;
         if (existing) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
-        Member saved = memberService.saveMember(name);
+        Member saved = memberService.saveMember(request.getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 }

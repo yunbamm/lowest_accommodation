@@ -2,23 +2,25 @@ package bangbang.dto;
 
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Getter
+@NoArgsConstructor
 public class AccommodationWatchedRequest {
-    @NotEmpty(message = "accommodationId is required")
+    @NotBlank(message = "accommodationId is required")
     private String accommodationId;
-    @NotEmpty(message = "checkIn is required")
+    @NotBlank(message = "checkIn is required")
     @FutureOrPresent(message = "checkIn must be today or in the future")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate checkIn;
-    @NotEmpty(message = "checkOut is required")
+    @NotBlank(message = "checkOut is required")
     private LocalDate checkOut;
-    @NotEmpty(message = "name is required")
+    @NotBlank(message = "name is required")
     private String name;
 
     @AssertTrue(message = "checkOut must be after checkIn")
