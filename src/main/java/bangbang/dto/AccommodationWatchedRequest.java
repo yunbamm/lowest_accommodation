@@ -4,6 +4,7 @@ import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ public class AccommodationWatchedRequest {
     private String accommodationId;
     @NotEmpty(message = "checkIn is required")
     @FutureOrPresent(message = "checkIn must be today or in the future")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate checkIn;
     @NotEmpty(message = "checkOut is required")
     private LocalDate checkOut;

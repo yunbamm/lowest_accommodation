@@ -3,6 +3,7 @@ package bangbang.service;
 import bangbang.dto.AccommodationWatchedRequest;
 import bangbang.entity.Member;
 import bangbang.entity.WatchedAccommodation;
+import bangbang.exception.MemberNotFoundException;
 import bangbang.repository.MemberRepository;
 import bangbang.repository.WatchedAccommodationRepository;
 import jakarta.transaction.Transactional;
@@ -10,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @Slf4j
