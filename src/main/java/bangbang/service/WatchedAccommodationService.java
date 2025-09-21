@@ -26,8 +26,8 @@ public class WatchedAccommodationService {
         //TODO : check duplication for watched accommodation info?
 
 
-        //TODO : for now, just log error. how about general exception handling way?
-        Member member = Optional.ofNullable(memberRepository.findByName(request.getName()))
+        //TODO : it's better to use MemberService?
+        Member member = memberRepository.findByName(request.getName())
                 .orElseThrow(() -> new MemberNotFoundException("Member not found with name: " + request.getName()));
 
 

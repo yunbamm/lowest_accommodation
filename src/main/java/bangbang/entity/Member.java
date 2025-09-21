@@ -1,11 +1,13 @@
 package bangbang.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "accommodation_member")
+@Builder
 public class Member {
 
     @Id
