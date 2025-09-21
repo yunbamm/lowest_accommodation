@@ -23,16 +23,16 @@ public class WatchedAccommodation {
     @Column(nullable = false)
     private LocalDate checkOut;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-    
+
     @Column(nullable = false)
     @Builder.Default
     private boolean isActive = true;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
     // Before saving DB, automatically set createdAt
     @PrePersist
