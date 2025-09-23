@@ -4,6 +4,7 @@ import bangbang.entity.PriceHistory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@ActiveProfiles("test")  // Use H2 in-memory database for testing
 @Transactional // after each test will be roll back --> so can isolate each test
 class PriceHistoryRepositoryTest {
 

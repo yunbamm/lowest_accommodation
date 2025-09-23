@@ -2,6 +2,7 @@ package bangbang.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "accommodation_watched_list")
 @Builder
+@Getter
 public class WatchedAccommodation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
