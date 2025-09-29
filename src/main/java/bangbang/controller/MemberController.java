@@ -23,8 +23,7 @@ public class MemberController {
     //TODO : RequestBody is okay for single field?
     @PostMapping("/register")
     public ResponseEntity<Member> registerMember(@Valid @RequestBody MemberRegisterRequest request) {
-        boolean existing = memberService.findByName(request.getName()) != null;
-        if (existing) {
+        if (memberService.findByName(request.getName()).isEmpty()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 

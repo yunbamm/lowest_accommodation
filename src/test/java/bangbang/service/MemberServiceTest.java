@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -57,10 +59,10 @@ class MemberServiceTest {
         memberService.saveMember(memberName);
 
         // when
-        Member foundMember = memberService.findByName(memberName);
+        Optional<Member> foundMember = memberService.findByName(memberName);
 
         // then
-        assertThat(foundMember).isNotNull();
+        assertThat(foundMember).isPresent();
     }
 
     @Test
@@ -70,10 +72,10 @@ class MemberServiceTest {
         String nonExistentName = "nonExistentUser";
 
         // when
-        Member foundMember = memberService.findByName(nonExistentName);
+        Optional<Member> foundMember = memberService.findByName(nonExistentName);
 
         // then
-        assertThat(foundMember).isNull();
+        assertThat(foundMember).isEmpty();
     }
 
     @Test

@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -17,10 +19,10 @@ public class MemberService {
     }
 
     //TODO : need to @Transactional..? readOnly?
-    //TODO : return Optional<Member> is better?
+    //TODO : return Optional<Member> is better? I'm not sure service layer should return non optional..
     @Transactional
-    public Member findByName(String name) {
-        return memberRepository.findByName(name).orElse(null);
+    public Optional<Member> findByName(String name) {
+        return memberRepository.findByName(name);
     }
 
 }
