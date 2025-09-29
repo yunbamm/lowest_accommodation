@@ -104,12 +104,12 @@ class WatchedAccommodationServiceTest {
     }
 
     private AccommodationWatchedRequest createValidRequest() {
-        AccommodationWatchedRequest request = new AccommodationWatchedRequest();
-
-        request.setAccommodationId("12345");
-        request.setCheckIn(LocalDate.now().plusDays(1));
-        request.setCheckOut(LocalDate.now().plusDays(3));
-        request.setName("TestUser");
+        AccommodationWatchedRequest request = AccommodationWatchedRequest.builder()
+                .accommodationId("12345")
+                .checkIn(LocalDate.now().plusDays(1))
+                .checkOut(LocalDate.now().plusDays(3))
+                .name("TestUser")
+                .build();
 
         return request;
     }
