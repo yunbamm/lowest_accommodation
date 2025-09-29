@@ -29,9 +29,10 @@ public class WatchedAccommodation {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(nullable = false)
-    @Builder.Default
-    private boolean isActive = true;
+    //TODO : In future, we may need to implement unwatch function
+//    @Column(nullable = false)
+//    @Builder.Default
+//    private boolean isActive = true;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
