@@ -26,6 +26,18 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  # for Redis
+  redis:
+    image: redis:7-alpine
+    container_name: lowest_accommodation_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    # --appendonly yes: keep data even if container is stopped
+
 # 볼륨 정의 (데이터 저장 공간)
 volumes:
   mysql_data:
+  redis_data:
