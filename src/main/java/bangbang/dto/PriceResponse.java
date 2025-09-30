@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class PriceResponse {
-    private String url;
+    private String accommodationId;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private Long price;
